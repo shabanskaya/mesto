@@ -2,7 +2,6 @@
 	max-width: 880px;
 	margin: 0 auto;
 	padding: 40px 0 51px;
-	border-bottom: 1px solid rgba(84,84,84,0.7);
 	display: grid;
 	grid-template-columns: repeat(3, max-content) 1fr;
 	grid-template-rows: repeat(2, 1fr);

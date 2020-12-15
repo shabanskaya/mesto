@@ -9,13 +9,15 @@
 	align-self: end;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+	overflow: hidden;
+	max-width: 500px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
 	.profile__name {
 		font-size: 27px;
 		line-height: 33px;
+		max-width: 250px;
 	}
 }
 
