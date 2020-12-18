@@ -17,7 +17,6 @@
 	.profile {
 		padding: 42px 0 36px;
 		margin: 0 19px;
-		grid-template-columns: column;
 		align-items: center;
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(4, min-content);
