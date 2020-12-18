@@ -9,6 +9,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-image: url(../../../images/pen-button.svg);
+	background-size: 40%;
 	grid-column: 3 / 4;
 	grid-row: 1 / 2;
 	align-self: end;
@@ -17,9 +18,11 @@
 }
 
 .profile__edit-button:hover {
-	opacity: 0.5;
+	opacity: 0.6;
 	cursor: pointer;
 }
+
+
 
 @media screen and (max-width: 700px) {
 	.profile__edit-button {
@@ -28,6 +31,6 @@
 		justify-self: end;
 		width: 18px;
 		height: 18px;
-		margin-right: 6%;
+		margin-right: calc((100% - 282px) / 2);
 	}
 }

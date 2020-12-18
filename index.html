@@ -16,53 +16,53 @@
 			<section class = "profile">
 				<img class = "profile__avatar" src="./images/portret-min.jpg" alt="портрет">
 				<h1 class = "profile__name">Жак-Ив Кусто</h1>
-				<button class="profile__edit-button"></button>
+				<button class="profile__edit-button" type="button"></button>
 				<p class="profile__about">Исследователь океана</p>
-				<button class="profile__add-button"></button>
+				<button class="profile__add-button" type="button"></button>
 			</section>
 			
 			<section class="places">
-				<ul class="elements">
-					<li class="elements__item">
-						<img class="elements__pic" alt="Исландия" src="./images/исландия-min.jpg">
-						<div class="elements__info">
-							<h2 class="elements__title">Исландия</h2>
-							<button class="elements__like"></button>
+				<ul class="places__list">
+					<li class="card">
+						<img class="card__pic" alt="Исландия" src="./images/iceland.jpg">
+						<div class="card__info">
+							<h2 class="card__title">Исландия</h2>
+							<button class="card__like" type="button"></button>
 						</div>
 					</li>
-					<li class="elements__item">
-						<img class="elements__pic" alt="Мачу-Пикчу" src="./images/мачупикчу-min.jpg">
-						<div class="elements__info">
-							<h2 class="elements__title">Мачу-Пикчу, Перу</h2>
-							<button class="elements__like"></button>
+					<li class="card">
+						<img class="card__pic" alt="Мачу-Пикчу" src="./images/machupikchu.jpg">
+						<div class="card__info">
+							<h2 class="card__title">Мачу-Пикчу, Перу</h2>
+							<button class="card__like"></button>
 						</div>
 					</li>
-					<li class="elements__item">
-						<img class="elements__pic" alt="Румыния" src="./images/румыния-min.jpg">
-						<div class="elements__info">
-							<h2 class="elements__title">Румыния</h2>
-							<button class="elements__like"></button>
+					<li class="card">
+						<img class="card__pic" alt="Румыния" src="./images/puminia.jpg">
+						<div class="card__info">
+							<h2 class="card__title">Румыния</h2>
+							<button class="card__like"></button>
 						</div>
 					</li>
-					<li class="elements__item">
-						<img class="elements__pic" alt="Фареры" src="./images/фарерские-о-ва-min.jpg">
-						<div class="elements__info">
-							<h2 class="elements__title">Фарерские острова</h2>
-							<button class="elements__like"></button>
+					<li class="card">
+						<img class="card__pic" alt="Фареры" src="./images/farer.jpg">
+						<div class="card__info">
+							<h2 class="card__title">Фарерские острова</h2>
+							<button class="card__like"></button>
 						</div>
 					</li>
-					<li class="elements__item">
-						<img class="elements__pic" alt="Швейцария" src="./images/швейцария-min.jpg">
-						<div class="elements__info">
-							<h2 class="elements__title">Швейцария</h2>
-							<button class="elements__like"></button>
+					<li class="card">
+						<img class="card__pic" alt="Швейцария" src="./images/swiss.jpg">
+						<div class="card__info">
+							<h2 class="card__title">Швейцария</h2>
+							<button class="card__like"></button>
 						</div>
 					</li>
-					<li class="elements__item">
-						<img class="elements__pic" alt="Венеция" src="./images/венеция-min.jpg">
-						<div class="elements__info">
-							<h2 class="elements__title">Италия, Венеция</h2>
-							<button class="elements__like"></button>
+					<li class="card">
+						<img class="card__pic" alt="Венеция" src="./images/venice.jpg">
+						<div class="card__info">
+							<h2 class="card__title">Италия, Венеция</h2>
+							<button class="card__like"></button>
 						</div>
 					</li>
 				</ul>
@@ -70,19 +70,21 @@
 		</main>
 
 		<footer class="footer">
-			<p class = "footer__copyrights">© 2020 Mesto Russia</p>
+			<p class = "footer__copyrights">&copy; 2020 Mesto Russia</p>
 		</footer>
 
 		<div class="popup">
-			<form class="popup__container">
-				<h2 class="popup__title">Редактировать профиль</h2>
-				<input class="popup__name" type="text" value="">
-				<input class="popup__about" type="text" value="">
-				<button class="popup__save-button">Сохранить</button>
-				<button class="popup__close-button" type="submit"></button>
-			</form>
+			<div class="popup__container">
+				<form class = "popup__form" name="editform">
+					<h2 class="popup__title">Редактировать профиль</h2>
+					<input class="popup__input popup__input_content_name" type="text" value="" name="name">
+					<input class="popup__input popup__input_content_job" type="text" value="" name="job">
+					<button class="popup__save-button" type="submit">Сохранить</button>
+				</form>
+				<button class="popup__close-button" type="button"></button>
+			</div>
 		</div>
 	</div>
-	<script src="./script.js"></script>
+	<script src="./scripts/script.js"></script>
 </body>
 </html>

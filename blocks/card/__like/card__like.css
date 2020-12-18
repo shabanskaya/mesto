@@ -1,4 +1,4 @@
-.elements__like {
+.card__like {
 	background-image: url(../../../images/no-like.svg);
 	width: 20px;
 	height: 18px;
@@ -9,11 +9,11 @@
 	outline: none;
 }
 
-.elements__like:hover {
+.card__like:hover {
 	opacity: 0.6;
 	cursor: pointer;
 }
 
-.elements__like:active {
+.card__like:active {
 	background-image: url(../../../images/like.svg);
 }

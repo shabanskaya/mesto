@@ -1,4 +1,4 @@
-.elements {
+.places__list {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(2, 361px);
@@ -10,7 +10,7 @@
 
 
 @media screen and (max-width: 950px) {
-	.elements {
+	.places__list {
 		grid-template-columns: repeat(2, 282px);
 		justify-content: center;
 		grid-template-rows: repeat(3, max-content);
@@ -18,7 +18,7 @@
 } 
 
 @media screen and (max-width: 700px) {
-	.elements {
+	.places__list {
 		grid-template-columns: 282px;
 		justify-content: center;
 		grid-template-rows: repeat(6, max-content);
