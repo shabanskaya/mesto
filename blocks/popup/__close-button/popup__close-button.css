@@ -11,7 +11,7 @@
 	background-color: rgba(0, 0, 0, 0);
 	background-repeat: no-repeat;
 	outline: none;
-	transition: opacity 0.5s;
+	transition: opacity 0.5s ease;
 	cursor: pointer;
 	padding: 0;
 }

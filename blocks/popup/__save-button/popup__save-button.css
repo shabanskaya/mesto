@@ -11,7 +11,7 @@
 	margin: 48px auto 37px;
 	padding: 14px 0;
 	outline: none;
-	transition: opacity 0.5s;
+	transition: opacity 0.5s ease;
 	cursor: pointer;
 	max-width: 84%;
 }

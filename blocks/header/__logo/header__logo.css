@@ -6,8 +6,12 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
+	transition: 0.5s opacity ease;
 }
 
+.header__logo:hover {
+	opacity: 0.6;
+}
 
 @media screen and (max-width: 900px) {
 	.header__logo {
