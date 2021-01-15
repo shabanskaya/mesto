@@ -11,3 +11,9 @@
 	outline: none;
 	max-width: 84%;
 }
+
+.popup__input::placeholder {
+	font-size: 14px;
+	line-height: 17px;
+	color: #C4C4C4;
+}
