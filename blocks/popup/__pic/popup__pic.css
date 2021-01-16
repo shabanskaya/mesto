@@ -1,4 +1,4 @@
-.full-pic-popup__pic {
+.popup__pic {
 	object-fit: contain;
 	max-height: 75vh;
 	max-width: 75vw;

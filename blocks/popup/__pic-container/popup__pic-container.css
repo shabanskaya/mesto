@@ -1,4 +1,4 @@
-.full-pic-popup__container {
+.popup__pic-container {
 	max-height: calc(75vh + 25px);
 	position: relative;
 	margin: 0;
