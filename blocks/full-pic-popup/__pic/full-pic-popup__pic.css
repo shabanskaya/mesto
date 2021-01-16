@@ -1,0 +1,7 @@
+.full-pic-popup__pic {
+	object-fit: contain;
+	max-height: 75vh;
+	max-width: 75vw;
+	justify-self: center;
+	align-self: center;
+}

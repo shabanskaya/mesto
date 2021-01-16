@@ -1,0 +1,5 @@
+.full-pic-popup__container {
+	max-height: calc(75vh + 25px);
+	position: relative;
+	margin: 0;
+}
