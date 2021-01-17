@@ -38,9 +38,9 @@ function openPopup(popup) {
 
 //функции для обработки событий с формой редактирования профиля
 function handleEditFormOpen() {
-	openPopup(popupEdit);
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileAbout.textContent;
+	openPopup(popupEdit);
 }
 
 function handleEditFormSubmit(evt) {
@@ -50,22 +50,11 @@ function handleEditFormSubmit(evt) {
 	closePopup(popupEdit);
 }
 
-function handleClosePopup(evt) {
-	closePopup(evt.target.closest('.popup'))
-}
-
 
 //функции для обработки событий с формой добавления фотографии
-function handleAddFormOpen() {
-	openPopup(popupAdd);
-}
-
 function handleAddFormSubmit(evt) {
 	evt.preventDefault();
-	const item = {name: '', link: ''};
-	item.name = labelInput.value;
-	item.link = linkInput.value;
-	addCard(item, placesWrap);
+	addCard({name: labelInput.value, link: linkInput.value}, placesWrap);
 	addFormElement.reset();
 	closePopup(popupAdd);
 }
@@ -85,26 +74,26 @@ function addCard(item, wrap) {
 //функция создающая разметку карточки по заданным данным
 function createCard(item) {
 	const card = templateCard.cloneNode(true);
-	const pic = card.querySelector('.card__pic');
+	const cardPicture = card.querySelector('.card__pic');
 	const likeButton = card.querySelector('.card__like');
-	const trash = card.querySelector('.card__delete-button');
-	const title = card.querySelector('.card__title');
-	pic.src = item.link;
-	pic.alt = item.name;
-	title.textContent = item.name;
+	const trashButton = card.querySelector('.card__delete-button');
+	const cardTitle = card.querySelector('.card__title');
+	cardPicture.src = item.link;
+	cardPicture.alt = item.name;
+	cardTitle.textContent = item.name;
 	likeButton.addEventListener('click', handleLikeButton);
-	trash.addEventListener('click', handleDeleteCard);
-	pic.addEventListener('click', () => handlePopupImagePreview(item));
+	trashButton.addEventListener('click', handleDeleteCard);
+	cardPicture.addEventListener('click', () => handlePopupImagePreview(item));
 	return card;
 }
 
 
 //функции для обработки событий с попапом просмотра отдельного фото, закрытие выше
 function handlePopupImagePreview(item) {
-	openPopup(popupImage);
 	imageSubtitle.textContent = item.name
 	previewPic.src = item.link;
 	previewPic.alt = item.name;
+	openPopup(popupImage);
 }
 
 
@@ -121,11 +110,11 @@ function handleLikeButton(evt) {
 addInitial();
 
 editButton.addEventListener('click', handleEditFormOpen);
-closeButtonEditForm.addEventListener('click', handleClosePopup);
+closeButtonEditForm.addEventListener('click', () => closePopup(popupEdit));
 editFormElement.addEventListener('submit', handleEditFormSubmit);
 
-addButton.addEventListener('click', handleAddFormOpen);
-closeButtonAddForm.addEventListener('click', handleClosePopup);
+addButton.addEventListener('click', () => openPopup(popupAdd));
+closeButtonAddForm.addEventListener('click', () => closePopup(popupAdd));
 addFormElement.addEventListener('submit', handleAddFormSubmit);
 
-closeButtonImage.addEventListener('click', handleClosePopup);
+closeButtonImage.addEventListener('click', () => closePopup(popupImage));
