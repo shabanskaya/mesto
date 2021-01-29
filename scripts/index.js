@@ -25,14 +25,43 @@ const previewPic = popupImage.querySelector('.popup__pic');
 const placesWrap = document.querySelector('.places__list'); //контейнер с карточками
 const templateCard = document.querySelector('.template-card').content; //шаблон карточки
 
+//поиск оверлеев попапов
+const popupsArray = Array.from(document.querySelectorAll('.popup'));
+//поиск контейнеров, чтобы остановить всплытие с них
+const popupContainersArray = Array.from(document.querySelectorAll('.popup__container'));
+const popupPicContainersArray = Array.from(document.querySelectorAll('.popup__pic-container'));
+
+
+//функция остановки всполытия события клика по контейнеру попапа на его оверлей
+function stopPropagationOnContainers(popupContainersArray) {
+	popupContainersArray.forEach((popupContainer) => {
+		popupContainer.addEventListener('click', (evt) => evt.stopPropagation());
+	});
+}
+
+//функция закрытия попапа по клику на оверлей
+function setListenersOnOverlay(popupsArray) {
+	popupsArray.forEach((popup) => {
+		popup.addEventListener('click', ()=> closePopup(popup));
+	});
+}
+
+//функция закрытия попапа по кнопке эскейп
+function closePopupOnEsc(evt) {
+	if (evt.key == 'Escape') {
+		closePopup(document.querySelector('.popup_opened'));
+	};
+}
 
 //функции для управления попапами
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
+	document.removeEventListener('keydown', closePopupOnEsc);
 }
 
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
+	document.addEventListener('keydown', closePopupOnEsc);
 }
 
 
@@ -115,6 +144,11 @@ function addInitialValues() {
 
 addInitial();
 addInitialValues();
+
+setListenersOnOverlay(popupsArray);
+stopPropagationOnContainers(popupContainersArray);
+stopPropagationOnContainers(popupPicContainersArray);
+
 
 editButton.addEventListener('click', handleEditFormOpen);
 closeButtonEditForm.addEventListener('click', () => closePopup(popupEdit));
