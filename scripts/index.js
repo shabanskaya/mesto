@@ -106,8 +106,15 @@ function handleLikeButton(evt) {
 	evt.target.classList.toggle('card__like_active');
 }
 
+//добавление начальных значений формы при загрузке страницы
+function addInitialValues() {
+	nameInput.value = profileName.textContent;
+	jobInput.value = profileAbout.textContent;
+}
+
 
 addInitial();
+addInitialValues();
 
 editButton.addEventListener('click', handleEditFormOpen);
 closeButtonEditForm.addEventListener('click', () => closePopup(popupEdit));

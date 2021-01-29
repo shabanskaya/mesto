@@ -35,8 +35,10 @@
 			<div class="popup__container">
 				<form class = "popup__form" name="editform">
 					<h2 class="popup__title">Редактировать профиль</h2>
-					<input class="popup__input popup__input_content_name" type="text" value="" name="name">
-					<input class="popup__input popup__input_content_job" type="text" value="" name="job">
+					<input class="popup__input popup__input_content_name" type="text" value="" id="name-input" name="name" required minlength="2" maxlength="40">
+					<span class="name-input-error popup__input-error"></span>
+					<input class="popup__input popup__input_content_job" type="text" value="" id="job-input" name="job" required minlength="2" maxlength="200">
+					<span class="job-input-error popup__input-error"></span>
 					<button class="popup__save-button" type="submit">Сохранить</button>
 				</form>
 				<button class="popup__close-button" type="button" aria-label="Закрыть"></button>
@@ -47,8 +49,10 @@
 			<div class="popup__container">
 				<form class = "popup__form" name="addform">
 					<h2 class="popup__title">Новое место</h2>
-					<input class="popup__input popup__input_content_label" type="text" value="" placeholder="Название" name="label">
-					<input class="popup__input popup__input_content_link" type="text" value="" placeholder="Ссылка на картинку" name="link">
+					<input class="popup__input popup__input_content_label" type="text" id="label-input" value="" placeholder="Название" name="label" required minlength="2" maxlength="30">
+					<span class="label-input-error popup__input-error"></span>
+					<input class="popup__input popup__input_content_link" type="url" id="link-input" value="" placeholder="Ссылка на картинку" name="link" required>
+					<span class="link-input-error popup__input-error"></span>
 					<button class="popup__save-button" type="submit">Создать</button>
 				</form>
 				<button class="popup__close-button" type="button" aria-label="Закрыть"></button>
@@ -77,5 +81,6 @@
 
 	<script src="./scripts/initial-cards.js"></script>
 	<script src="./scripts/index.js"></script>
+	<script src="./scripts/validate.js"></script>
 </body>
 </html>

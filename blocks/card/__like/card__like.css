@@ -7,6 +7,7 @@
 	border: none;
 	background-color: #fff;
 	outline: none;
+	background-repeat: no-repeat;
 }
 
 .card__like:hover {
