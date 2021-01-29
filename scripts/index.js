@@ -15,6 +15,7 @@ const closeButtonAddForm = popupAdd.querySelector('.popup__close-button');
 const labelInput = popupAdd.querySelector('.popup__input_content_label');
 const linkInput = popupAdd.querySelector('.popup__input_content_link');
 const addFormElement = popupAdd.querySelector('.popup__form');
+const saveButtonAtAddForm = popupAdd.querySelector('.popup__save-button')
 
 //поиск и определние переменных для просмотра фото
 const popupImage = document.querySelector('.popup_feature_fullview'); 
@@ -32,7 +33,7 @@ const popupContainersArray = Array.from(document.querySelectorAll('.popup__conta
 const popupPicContainersArray = Array.from(document.querySelectorAll('.popup__pic-container'));
 
 
-//функция остановки всполытия события клика по контейнеру попапа на его оверлей
+//функция остановки всплытия события клика по контейнеру попапа на его оверлей
 function stopPropagationOnContainers(popupContainersArray) {
 	popupContainersArray.forEach((popupContainer) => {
 		popupContainer.addEventListener('click', (evt) => evt.stopPropagation());
@@ -81,10 +82,14 @@ function handleEditFormSubmit(evt) {
 
 
 //функции для обработки событий с формой добавления фотографии
+
+
 function handleAddFormSubmit(evt) {
 	evt.preventDefault();
 	addCard({name: labelInput.value, link: linkInput.value}, placesWrap);
 	addFormElement.reset();
+	saveButtonAtAddForm.classList.add('popup__save-button_disabled');
+	saveButtonAtAddForm.setAttribute('disabled', 'disabled');
 	closePopup(popupAdd);
 }
 
