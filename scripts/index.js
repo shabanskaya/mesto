@@ -1,89 +1,5 @@
-class Card {
-	constructor(data, templateSelector) {
-		this._link = data.link;
-		this._name = data.name;
-		this._templateSelector = templateSelector;
-	}
-
-	// метод для получения элемента шаблона
-	_getTemplate() {
-		const templateCard = document.querySelector(this._templateSelector).content.querySelector('.card');
-		const card = templateCard.cloneNode(true);
-		return card
-	}
-
-	// метод возвращающий заполненный элемент карточки со всеми слушателями
-	createCard() {
-		this._element = this._getTemplate()
-		this._cardPicture = this._element.querySelector('.card__pic');
-		this._cardTitle = this._element.querySelector('.card__title');
-
-		this._cardPicture.src = this._link;
-		this._cardPicture.alt = this._name;
-		this._cardTitle.textContent = this._name;
-		this._setEventListeners()
-
-		return this._element;
-	}
-
-	_setEventListeners() {
-		this._likeButton = this._element.querySelector('.card__like');
-		this._trashButton = this._element.querySelector('.card__delete-button');
-
-		this._likeButton.addEventListener('click', () => {
-			this._handleLikeButton();
-		});
-		this._trashButton.addEventListener('click', () => {
-			this._handleDeleteCard();
-		});
-		this._cardPicture.addEventListener('click', () => {
-			this._handlePopupImagePreview();
-		});
-	}
-	
-	//метод управления кнопкой лайка
-	_handleLikeButton() {
-		this._likeButton.classList.toggle('card__like_active');
-	}
-
-	//метод управления кнопкой корзины
-	_handleDeleteCard(evt) {
-		this._cardPicture.closest('.card').remove();
-	}
-
-	//метод управления кликом по карточке
-	_handlePopupImagePreview() {
-		this._popupImage = document.querySelector('.popup_feature_fullview'); 
-		this._imageSubtitle = this._popupImage.querySelector('.popup__subtitle');
-		this._previewPic = this._popupImage.querySelector('.popup__pic');
-		this._imageSubtitle.textContent = this._name
-		this._previewPic.src = this._link;
-		this._previewPic.alt = this._name;
-		this._openPopup();
-	}
-
-	//метод закрытия попапа по кнопке эскейп
-	_closePopupOnEsc(evt) {
-		if (evt.key == 'Escape') {
-			this._closePopup();
-		};
-	}
-
-	//метод для закрытия попапа картинки по эскейпу
-	_closePopup() {
-		this._popupImage.classList.remove('popup_opened');
-		document.removeEventListener('keydown', closePopupOnEsc);
-	}
-
-	//метод для открытия попапа
-	_openPopup(popup) {
-		this._popupImage.classList.add('popup_opened');
-		document.addEventListener('keydown', (evt) => {
-			this._closePopupOnEsc(evt);
-		});
-	}
-}
-
+import Card from './Card.js';
+import {initialCards} from './initial-cards.js';
 
 //поиск и определние переменных для формы редактирования профиля 
 const editButton = document.querySelector('.profile__edit-button'); 
@@ -107,11 +23,9 @@ const saveButtonAtAddForm = popupAdd.querySelector('.popup__save-button')
 //поиск и определние переменных для просмотра фото
 const popupImage = document.querySelector('.popup_feature_fullview'); 
 const closeButtonImage = popupImage.querySelector('.popup__close-button');
-const imageSubtitle = popupImage.querySelector('.popup__subtitle');
-const previewPic = popupImage.querySelector('.popup__pic');
+
 
 const placesWrap = document.querySelector('.places__list'); //контейнер с карточками
-const templateCard = document.querySelector('.template-card').content; //шаблон карточки!!!!!!!!!!!!!!!!!!!!!!!
 
 //поиск оверлеев попапов
 const popupsArray = Array.from(document.querySelectorAll('.popup'));
@@ -169,8 +83,6 @@ function handleEditFormSubmit(evt) {
 
 
 //функции для обработки событий с формой добавления фотографии
-
-
 function handleAddFormSubmit(evt) {
 	evt.preventDefault();
 	addCard({name: labelInput.value, link: linkInput.value}, placesWrap);
@@ -179,7 +91,6 @@ function handleAddFormSubmit(evt) {
 	saveButtonAtAddForm.setAttribute('disabled', 'disabled');
 	closePopup(popupAdd);
 }
-
 
 //добавление начальных карточек
 function addInitial() {
@@ -193,41 +104,6 @@ function addCard(item, wrap) {
 	//wrap.prepend(createCard(item));
 	wrap.prepend(card.createCard());
 }
-
-//функция создающая разметку карточки по заданным данным
-/* function createCard(item) {
-	const card = templateCard.cloneNode(true);
-	const cardPicture = card.querySelector('.card__pic');
-	const likeButton = card.querySelector('.card__like');
-	const trashButton = card.querySelector('.card__delete-button');
-	const cardTitle = card.querySelector('.card__title');
-	cardPicture.src = item.link;
-	cardPicture.alt = item.name;
-	cardTitle.textContent = item.name;
-	likeButton.addEventListener('click', handleLikeButton);
-	trashButton.addEventListener('click', handleDeleteCard);
-	cardPicture.addEventListener('click', () => handlePopupImagePreview(item));
-	return card;
-} */
-
-/* 
-//функции для обработки событий с попапом просмотра отдельного фото, закрытие выше
-function handlePopupImagePreview(item) {
-	imageSubtitle.textContent = item.name
-	previewPic.src = item.link;
-	previewPic.alt = item.name;
-	openPopup(popupImage);
-} */
-
-
-//функции дляобработки собятий с кномнами на карточках
-/* function handleDeleteCard(evt) {
-	evt.target.closest('.card').remove();
-} */
-
-/* function handleLikeButton(evt) {
-	evt.target.classList.toggle('card__like_active');
-} */
 
 //добавление начальных значений формы при загрузке страницы
 function addInitialValues() {
@@ -253,5 +129,3 @@ closeButtonAddForm.addEventListener('click', () => closePopup(popupAdd));
 addFormElement.addEventListener('submit', handleAddFormSubmit);
 
 closeButtonImage.addEventListener('click', () => closePopup(popupImage));
-
-
