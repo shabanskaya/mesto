@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import {initialCards} from './initial-cards.js';
+import FormValidator from './FormValidator.js';
 
 //поиск и определние переменных для формы редактирования профиля 
 const editButton = document.querySelector('.profile__edit-button'); 
@@ -33,6 +34,14 @@ const popupsArray = Array.from(document.querySelectorAll('.popup'));
 const popupContainersArray = Array.from(document.querySelectorAll('.popup__container'));
 const popupPicContainersArray = Array.from(document.querySelectorAll('.popup__pic-container'));
 
+const selectorsData = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
 
 //функция остановки всплытия события клика по контейнеру попапа на его оверлей
 function stopPropagationOnContainers(popupContainersArray) {
@@ -111,6 +120,14 @@ function addInitialValues() {
 	jobInput.value = profileAbout.textContent;
 }
 
+//функция запуска валидации на каждой форме документа
+function enableValidationForms(args) {
+	const formList = Array.from(document.querySelectorAll(args.formSelector));
+	formList.forEach((formElement) => {
+		const validator = new FormValidator(args, formElement);
+		validator.enableValidation();
+	})
+}
 
 addInitial();
 addInitialValues();
@@ -129,3 +146,13 @@ closeButtonAddForm.addEventListener('click', () => closePopup(popupAdd));
 addFormElement.addEventListener('submit', handleAddFormSubmit);
 
 closeButtonImage.addEventListener('click', () => closePopup(popupImage));
+
+//запуск валидации на всех формах документа
+enableValidationForms({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+});
