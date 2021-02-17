@@ -24,9 +24,11 @@ const saveButtonAtAddForm = popupAdd.querySelector('.popup__save-button')
 //поиск и определние переменных для просмотра фото
 const popupImage = document.querySelector('.popup_feature_fullview'); 
 const closeButtonImage = popupImage.querySelector('.popup__close-button');
+const imageSubtitle = popupImage.querySelector('.popup__subtitle');
+const previewPic = popupImage.querySelector('.popup__pic');
 
-
-const placesWrap = document.querySelector('.places__list'); //контейнер с карточками
+//контейнер с карточками
+const placesWrap = document.querySelector('.places__list'); 
 
 //поиск оверлеев попапов
 const popupsArray = Array.from(document.querySelectorAll('.popup'));
@@ -99,6 +101,14 @@ function handleAddFormSubmit(evt) {
 	saveButtonAtAddForm.classList.add('popup__save-button_disabled');
 	saveButtonAtAddForm.setAttribute('disabled', 'disabled');
 	closePopup(popupAdd);
+}
+
+//функция управления кликом по карточке
+export function handlePopupImagePreview(name, link) {
+	imageSubtitle.textContent = name
+	previewPic.src = link;
+	previewPic.alt = name;
+	openPopup(popupImage);
 }
 
 //добавление начальных карточек

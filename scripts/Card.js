@@ -1,3 +1,4 @@
+import { handlePopupImagePreview } from './index.js';
 export default class Card {
 	constructor(data, templateSelector) {
 		this._link = data.link;
@@ -38,7 +39,7 @@ export default class Card {
 			this._handleDeleteCard();
 		});
 		this._cardPicture.addEventListener('click', () => {
-			this._handlePopupImagePreview();
+			handlePopupImagePreview(this._name, this._link);
 		});
 	}
 	
@@ -51,37 +52,4 @@ export default class Card {
 	_handleDeleteCard(evt) {
 		this._cardPicture.closest('.card').remove();
 	}
-
-	//метод управления кликом по карточке
-	_handlePopupImagePreview() {
-		this._popupImage = document.querySelector('.popup_feature_fullview'); 
-		this._imageSubtitle = this._popupImage.querySelector('.popup__subtitle');
-		this._previewPic = this._popupImage.querySelector('.popup__pic');
-		this._imageSubtitle.textContent = this._name
-		this._previewPic.src = this._link;
-		this._previewPic.alt = this._name;
-		this._openPopup();
-	}
-
-	//метод закрытия попапа по кнопке эскейп
-	_closePopupOnEsc(evt) {
-		if (evt.key == 'Escape') {
-			this._closePopup();
-		};
-	}
-
-	//метод для закрытия попапа картинки по эскейпу
-	_closePopup() {
-		this._popupImage.classList.remove('popup_opened');
-		document.removeEventListener('keydown', () => {this._closePopupOnEsc});
-	}
-
-	//метод для открытия попапа
-	_openPopup(popup) {
-		this._popupImage.classList.add('popup_opened');
-		document.addEventListener('keydown', (evt) => {
-			this._closePopupOnEsc(evt);
-		});
-	}
 }
-
