@@ -1,9 +1,9 @@
-import { handlePopupImagePreview } from './index.js';
 export default class Card {
-	constructor(data, templateSelector) {
+	constructor(data, templateSelector, handlePopupImagePreview) {
 		this._link = data.link;
 		this._name = data.name;
 		this._templateSelector = templateSelector;
+		this._handlePopupImagePreview = handlePopupImagePreview;
 	}
 
 	// метод для получения элемента шаблона
@@ -39,7 +39,7 @@ export default class Card {
 			this._handleDeleteCard();
 		});
 		this._cardPicture.addEventListener('click', () => {
-			handlePopupImagePreview(this._name, this._link);
+			this._handlePopupImagePreview();
 		});
 	}
 	
