@@ -16,24 +16,34 @@ import {
 	popupWithEditFormSelector, 
 	popupWithAddFormSelector, 
 	templateCardSelector, 
-	selectorsData
+	selectorsData, 
+	profileForm, 
+	addForm
 } from '../utils/constants.js'
+
+//запуска валидации на каждой форме документа
+const profileValidator = new FormValidator(selectorsData, profileForm);
+profileValidator.enableValidation();
+
+const addCardValidator = new FormValidator(selectorsData, addForm);
+addCardValidator.enableValidation(); 
 
 //создания экземпляра класса для управления данными профиля
 const userInfo = new UserInfo({nameSelector: nameSelector, aboutSelector: aboutSelector})
 
 //создание экземпляра класса PopupWithForm для формы добавления фото и активация его слушателей
-const popupWithAddForm = new PopupWithForm(popupWithAddFormSelector, {handleSubmit: (evt, item) => {
-	evt.preventDefault();
-	addCard({name: item[0], link: item[1]});
-}})
+const popupWithAddForm = new PopupWithForm(popupWithAddFormSelector, {handleSubmit: (item) => {
+	addCard(item);
+}, hideAllErrors: (list) => addCardValidator.hideAllErrors(list)})
 popupWithAddForm.setEventListeners()
 
 //создание экземпляра класса PopupWithForm для формы редактирования профиля и активация его слушателей
-const popupWithEditForm = new PopupWithForm(popupWithEditFormSelector, {handleSubmit: (evt, item) => {
-	evt.preventDefault();
-	userInfo.setUserInfo({name: item[0], about: item[1]});
-}, name: userInfo.getUserInfo().name, about: userInfo.getUserInfo().about})
+const popupWithEditForm = new PopupWithForm(popupWithEditFormSelector, {
+	handleSubmit: (item) => {
+		userInfo.setUserInfo(item);
+	}, 
+	hideAllErrors: (list) => profileValidator.hideAllErrors(list)
+})
 popupWithEditForm.setEventListeners()
 
 
@@ -41,13 +51,13 @@ popupWithEditForm.setEventListeners()
 const cardList = new Section({items: initialCards, renderer: cardRenderer}, '.places__list')
 cardList.renderItems();
 
+//создание экземпляра класса PopupWithImage для показа фото и активация его слушателей
+const imagePopup = new PopupWithImage(popupWithImageSelector)
+imagePopup.setEventListeners();
+
 //функция возвращающая разметку карточки по ее данным
 function cardRenderer(cardItem) {
-	const card = new Card(cardItem, templateCardSelector, () => {
-		const imagePopup = new PopupWithImage(popupWithImageSelector, cardItem.name, cardItem.link)
-		imagePopup.open();
-		imagePopup.setEventListeners();
-	});
+	const card = new Card(cardItem, templateCardSelector, () => {imagePopup.open(cardItem.label, cardItem.link);});
 	return card.createCard();
 }
 
@@ -56,18 +66,12 @@ function addCard(item) {
 	cardList.addItem(cardRenderer(item))
 } 
 
-//функция запуска валидации на каждой форме документа
-function enableValidationForms(args) {
-	const formList = Array.from(document.querySelectorAll(args.formSelector));
-	formList.forEach((formElement) => {
-		const validator = new FormValidator(args, formElement);
-		validator.enableValidation();
-	})
-}
+
+
 
 //добавление слушателей на кнопки "+" и "редактировать"
-editButton.addEventListener('click', () => popupWithEditForm.open());
+editButton.addEventListener('click', () => popupWithEditForm.open(userInfo.getUserInfo()));
 addButton.addEventListener('click', () => popupWithAddForm.open());
 
 //запуск лайв-валидации форм
-enableValidationForms(selectorsData);
+//enableValidationForms(selectorsData);

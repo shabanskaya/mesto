@@ -2,18 +2,19 @@ export default class Popup {
 	constructor(popupSelector) {
 		this._popupSelector = popupSelector;
 		this._popup = document.querySelector(popupSelector);
+		this._handleEscClose = this._handleEscClose.bind(this)
 	}
 
 	//метод закрытия попапа и удаления слушателя на эскейп
 	close() {
 		this._popup.classList.remove('popup_opened');
-		document.removeEventListener('keydown', this._handleEscClose.bind(this));
+		document.removeEventListener('keydown', this._handleEscClose);
 	}
 
 	//метод открытия попапа и установки слушателя на эскейп
 	open() {
 		this._popup.classList.add('popup_opened');
-		document.addEventListener('keydown', this._handleEscClose.bind(this));	
+		document.addEventListener('keydown', this._handleEscClose);	
 	}
 
 	//функция, управляющая закрытие по клавише эскейп

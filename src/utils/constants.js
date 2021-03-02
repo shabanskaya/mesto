@@ -19,30 +19,34 @@ const selectorsData = {
   errorClass: 'popup__input-error_active'
 };
 
+const profileForm = document.querySelector(popupWithEditFormSelector).querySelector(selectorsData.formSelector);
+const addForm = document.querySelector(popupWithAddFormSelector).querySelector(selectorsData.formSelector);
+
+
 //данные для начальных карточек
 export const initialCards = [
   {
-    name: 'Архыз',
+    label: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Челябинская область',
+    label: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Иваново',
+    label: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Камчатка',
+    label: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Холмогорский район',
+    label: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Байкал',
+    label: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
@@ -55,5 +59,7 @@ export {editButton,
 	popupWithEditFormSelector, 
 	popupWithAddFormSelector, 
 	templateCardSelector, 
-	selectorsData
+	selectorsData, 
+	profileForm, 
+	addForm
 };

@@ -1,17 +1,17 @@
 export default class UserInfo {
 	constructor({nameSelector, aboutSelector}) {
 		this._name = document.querySelector(nameSelector);
-		this._about = document.querySelector(aboutSelector);
+		this._job = document.querySelector(aboutSelector);
 	}
 	
 	//метод для получения данных пользователя со страницы
 	getUserInfo() {
-		return {name: this._name.textContent, about: this._about.textContent};
+		return {name: this._name.textContent, job: this._job.textContent};
 	}
 
 	//метод для установки данных пользователя на сранице
 	setUserInfo(info) {
 		this._name.textContent = info.name;
-		this._about.textContent = info.about
+		this._job.textContent = info.job
 	}
 }

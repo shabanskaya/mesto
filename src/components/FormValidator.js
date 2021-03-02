@@ -70,4 +70,12 @@ export default class FormValidator {
 		this._errorElement.textContent = '';
 	}
 
+	//публичный метод для очистки ошибок при закрытии и перезагрузке формы
+	hideAllErrors(inputList) {
+		this._buttonElement.classList.add('popup__save-button_disabled'); 
+		this._buttonElement.setAttribute('disabled', 'disabled'); 
+		inputList.forEach((inputElement) => { 
+			this._hideInputError(inputElement); 
+		}) 
+	} 
 }

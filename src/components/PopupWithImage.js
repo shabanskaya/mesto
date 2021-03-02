@@ -1,22 +1,19 @@
 import Popup from './Popup.js'
-const popupImage = document.querySelector('.popup_feature_fullview'); 
-const imageSubtitle = popupImage.querySelector('.popup__subtitle');
-const previewPic = popupImage.querySelector('.popup__pic');
 const picContainerSelector = '.popup__pic-container'
 
 //класс попапа с картинкой
 export default class PopupWithImage extends Popup {
-	constructor(popupSelector, name, link) {
+	constructor(popupSelector) {
 		super(popupSelector);
-		this._name = name;
-		this._link = link;
+		this._imageSubtitle = this._popup.querySelector('.popup__subtitle');
+		this._previewPic = this._popup.querySelector('.popup__pic');
 	}
 
 	//метод открытия попапа с картинкой, заполняющий данные для него
-	open() {
-		imageSubtitle.textContent = this._name
-		previewPic.src = this._link;
-		previewPic.alt = this._name;
+	open(name, link) {
+		this._imageSubtitle.textContent = name
+		this._previewPic.src = link;
+		this._previewPic.alt = name;
 		super.open()
 	}
 

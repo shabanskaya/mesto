@@ -1,7 +1,7 @@
 export default class Card {
 	constructor(data, templateSelector, handlePopupImagePreview) {
 		this._link = data.link;
-		this._name = data.name;
+		this._label = data.label;
 		this._templateSelector = templateSelector;
 		this._handlePopupImagePreview = handlePopupImagePreview;
 	}
@@ -20,8 +20,8 @@ export default class Card {
 		this._cardTitle = this._element.querySelector('.card__title');
 
 		this._cardPicture.src = this._link;
-		this._cardPicture.alt = this._name;
-		this._cardTitle.textContent = this._name;
+		this._cardPicture.alt = this._label;
+		this._cardTitle.textContent = this._label;
 		this._setEventListeners()
 
 		return this._element;
