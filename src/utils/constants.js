@@ -9,6 +9,7 @@ const popupWithImageSelector = '.popup_feature_fullview'
 const popupWithEditFormSelector = '.popup_feature_edit'
 const popupWithAddFormSelector = '.popup_feature_add'
 const templateCardSelector = '.template-card'
+
 const selectorsData = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -18,6 +19,7 @@ const selectorsData = {
   errorClass: 'popup__input-error_active'
 };
 
+//данные для начальных карточек
 export const initialCards = [
   {
     name: 'Архыз',
