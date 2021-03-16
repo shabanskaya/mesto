@@ -51,14 +51,9 @@ export default class Card {
 			this._handlePopupImagePreview();
 		});
 	}
-	
-	//метод управления кнопкой лайка
-	//_handleLikeButton() {
-		//this._likeButton.classList.toggle('card__like_active');
-	//}
 
 	//метод управления кнопкой корзины
-	_handleDeleteCard(evt) {
+	handleDeleteCard(evt) {
 		this._cardPicture.closest('.card').remove();
 	}
 

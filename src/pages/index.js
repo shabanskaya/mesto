@@ -155,7 +155,7 @@ api.getUserInfo()
 //создание экземпляра класса PopupWithForm для формы подтверждения удаления фото. Активация его слушателей.
 const popupWithConfirmForm = new PopupWithForm('.popup_feature_confirm', {
 	handleSubmit: (temp, openCard, cardId) => {
-		openCard._handleDeleteCard();
+		openCard.handleDeleteCard();
 		api.deleteCard(cardId);
 	}, hideAllErrors: ()=>{}
 })
