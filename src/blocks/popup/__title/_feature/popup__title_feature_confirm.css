@@ -1,0 +1,9 @@
+.popup__title_feature_confirm {
+	padding-bottom: 7px;
+}
+
+@media screen and (max-width: 600px) {
+	.popup__title_feature_confirm {
+		padding-bottom: 7px;
+	}
+}

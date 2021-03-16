@@ -23,7 +23,7 @@ export default class PopupWithForm extends Popup {
 		super.setEventListeners();
 		this._form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
-			this._handleSubmit(this._getInputValues());
+			this._handleSubmit(this._getInputValues(), this._openData, this._cardId);
 			this.close()
 		});
 	}
@@ -32,19 +32,20 @@ export default class PopupWithForm extends Popup {
 	close() {
 		super.close()
 		this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
-		this._hideAllErrors(this._inputList);
+		this._hideAllErrors();
 		this._form.reset();
 	}
 
 	//метод открытия попапа, добавляющий также в форму редактирования значения имени и описания пользователя
-	open(data) {
+	open(data={name:'', link:'', avatar: ''}, cardId) {
 		super.open();
-		if (this._popupSelector == '.popup_feature_edit') {
-			this._inputList = this._popup.querySelectorAll('.popup__input');
-			this._inputList.forEach(input => {
-				 input.value = data[input.name]
-			}); 
-		}
+		this._inputList = this._popup.querySelectorAll('.popup__input');
+		this._inputList.forEach(input => {
+				input.value = data[input.name]
+		});
+		//////
+		this._openData = data;
+		this._cardId = cardId
 	}
 
 }

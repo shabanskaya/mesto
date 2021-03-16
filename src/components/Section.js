@@ -1,8 +1,8 @@
 export default class Section {
-	constructor({items, renderer}, containerSelector) {
-		this._items = items;
+	constructor({renderer}, containerSelector, userId) {
 		this._renderer = renderer;
 		this._container = document.querySelector(containerSelector);
+		this._userId = userId;
 	}
 
 	//метод добаления заданного элемента в конейнер класса
@@ -11,9 +11,9 @@ export default class Section {
 	}
 
 	//метод отрисовки размеченных элементов в DOM
-	renderItems() {
-		this._items.forEach((item) => {
-			this.addItem(this._renderer(item));
+	renderItems(items) {
+		items.forEach((item) => {
+			this.addItem(this._renderer(item, this._userId));
 		})	
 	}
 }

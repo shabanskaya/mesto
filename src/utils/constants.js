@@ -1,6 +1,7 @@
 //поиск и определние переменных для элементов кнопок "+" и "редактировать"
 const editButton = document.querySelector('.profile__edit-button'); 
 const addButton = document.querySelector('.profile__add-button'); 
+const avatarButton = document.querySelector('.profile__avatar-overlay')
 
 //занесение необходимых селекторов в переменные
 const nameSelector = '.profile__name'
@@ -9,6 +10,8 @@ const popupWithImageSelector = '.popup_feature_fullview'
 const popupWithEditFormSelector = '.popup_feature_edit'
 const popupWithAddFormSelector = '.popup_feature_add'
 const templateCardSelector = '.template-card'
+const popupWithAvatarFormSelector = '.popup_feature_avatar'
+const imageSelector = '.profile__avatar'
 
 const selectorsData = {
   formSelector: '.popup__form',
@@ -21,32 +24,36 @@ const selectorsData = {
 
 const profileForm = document.querySelector(popupWithEditFormSelector).querySelector(selectorsData.formSelector);
 const addForm = document.querySelector(popupWithAddFormSelector).querySelector(selectorsData.formSelector);
+const avatarForm = document.querySelector(popupWithAvatarFormSelector).querySelector(selectorsData.formSelector);
 
+const profileSaveButton = document.querySelector(popupWithEditFormSelector).querySelector(selectorsData.submitButtonSelector);
+const addSaveButton = document.querySelector(popupWithAddFormSelector).querySelector(selectorsData.submitButtonSelector);
+const avatarSaveButton = document.querySelector(popupWithAvatarFormSelector).querySelector(selectorsData.submitButtonSelector);
 
 //данные для начальных карточек
 export const initialCards = [
   {
-    label: 'Архыз',
+    name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    label: 'Челябинская область',
+    name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    label: 'Иваново',
+    name: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    label: 'Камчатка',
+    name: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    label: 'Холмогорский район',
+    name: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    label: 'Байкал',
+    name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
@@ -57,9 +64,16 @@ export {editButton,
 	aboutSelector, 
 	popupWithImageSelector, 
 	popupWithEditFormSelector, 
-	popupWithAddFormSelector, 
+  popupWithAddFormSelector, 
 	templateCardSelector, 
 	selectorsData, 
 	profileForm, 
-	addForm
+  addForm,
+  popupWithAvatarFormSelector,
+  avatarForm,
+  avatarButton, 
+  profileSaveButton, 
+  addSaveButton, 
+  avatarSaveButton,
+  imageSelector
 };
