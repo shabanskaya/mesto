@@ -6,11 +6,11 @@ export default class PopupWithForm extends Popup {
 		this._handleSubmit = handleSubmit;
 		this._form = this._popup.querySelector('.popup__form');
 		this._hideAllErrors = hideAllErrors;
+		this._inputList = this._popup.querySelectorAll('.popup__input');
 	}
 
 	//метод для получения ввденных в форму данных
 	_getInputValues() {	
-	  this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
 		this._formValues = {};
 		this._inputList.forEach(input => {
 			this._formValues[input.name] = input.value;
@@ -31,7 +31,6 @@ export default class PopupWithForm extends Popup {
 	//метод закрытия попапа, сбравывающий также ошибки и поля формы для следующего открытия
 	close() {
 		super.close()
-		this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
 		this._hideAllErrors();
 		this._form.reset();
 	}
@@ -39,11 +38,11 @@ export default class PopupWithForm extends Popup {
 	//метод открытия попапа, добавляющий также в форму редактирования значения имени и описания пользователя
 	open(data={name:'', link:'', avatar: ''}, cardId) {
 		super.open();
-		this._inputList = this._popup.querySelectorAll('.popup__input');
+		
 		this._inputList.forEach(input => {
 				input.value = data[input.name]
 		});
-		//////
+
 		this._openData = data;
 		this._cardId = cardId
 	}

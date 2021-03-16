@@ -1,5 +1,4 @@
 import Popup from './Popup.js'
-const picContainerSelector = '.popup__pic-container'
 
 //класс попапа с картинкой
 export default class PopupWithImage extends Popup {
@@ -19,6 +18,6 @@ export default class PopupWithImage extends Popup {
 
 	//метод отменяющий всплытие клика для контейнера картинки
 	_stopPropagationOnContainers() {
-		this._popup.querySelector(picContainerSelector).addEventListener('click', (evt) => evt.stopPropagation())
+		this._popup.querySelector('.popup__pic-container').addEventListener('click', (evt) => evt.stopPropagation())
 	}
 }

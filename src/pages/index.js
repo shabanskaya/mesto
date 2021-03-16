@@ -68,9 +68,10 @@ const popupWithAvatarForm = new PopupWithForm(popupWithAvatarFormSelector, {
 		loading(true, avatarSaveButton, 'Сохранить')
 		userInfo.setUserAva(item);
 		api.updateUserAvatar(item)
+			.catch((err) => {console.log(err)})
 			.finally((res)=>{				
 				loading(false, avatarSaveButton, 'Сохранить');
-			});
+			})
 	},
 	hideAllErrors: () => avatarValidator.hideAllErrors()
 })
@@ -82,6 +83,7 @@ const popupWithEditForm = new PopupWithForm(popupWithEditFormSelector, {
 		loading(true, profileSaveButton, 'Сохранить')
 		userInfo.setUserInfo(item);
 		api.updateUserInfo(item)
+			.catch((err) => {console.log(err)})
 			.finally((res)=>{				
 				loading(false, profileSaveButton, 'Сохранить');
 			});
@@ -112,11 +114,11 @@ api.getUserInfo()
 						if (!likeButton.classList.contains('card__like_active')) {
 							api.putLike(cardItem._id).then((res) => {
 								likes.textContent = res.likes.length
-							})
+							}).catch((err) => {console.log(err)})
 						} else {
 							api.deleteLike(cardItem._id).then((res) => {
 								likes.textContent = res.likes.length
-							})
+							}).catch((err) => {console.log(err)})
 						}
 						likeButton.classList.toggle('card__like_active')
 					}}
@@ -135,12 +137,14 @@ api.getUserInfo()
 		//добавление на страницу начальных карточек
 		api.getInitialCards()
 			.then((data) => {cardList.renderItems(data.reverse())})
+			.catch((err) => {console.log(err)});
 
 		//создание экземпляра класса PopupWithForm для формы добавления фото и активация его слушателей
 		const popupWithAddForm = new PopupWithForm(popupWithAddFormSelector, {handleSubmit: (item) => {
 			loading(true, addSaveButton, 'Cоздать')
 			api.postNewCard(item)
 				.then( (res) => {addCard(res, cardList, dataOfUser._id)} )
+				.catch((err) => {console.log(err)})
 				.finally((res)=>{				
 					loading(false, addSaveButton, 'Создать');
 				});
@@ -149,14 +153,14 @@ api.getUserInfo()
 		
 		//создание слушателя на кнопке "+"
 		addButton.addEventListener('click', () => popupWithAddForm.open());
-	})
+	}).catch((err) => {console.log(err)})
 
 
 //создание экземпляра класса PopupWithForm для формы подтверждения удаления фото. Активация его слушателей.
 const popupWithConfirmForm = new PopupWithForm('.popup_feature_confirm', {
 	handleSubmit: (temp, openCard, cardId) => {
 		openCard.handleDeleteCard();
-		api.deleteCard(cardId);
+		api.deleteCard(cardId).catch((err) => {console.log(err)});
 	}, hideAllErrors: ()=>{}
 })
 popupWithConfirmForm.setEventListeners()

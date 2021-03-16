@@ -11,11 +11,7 @@ export default class Api {
 				authorization: this._authorization,
   		}
 		})
-			.then((res) => {
-				if (res.ok) {return res.json()}
-				else {return Promise.reject(`Ошибка: ${res.status}`)}
-			})
-			.catch((err) => {console.log(err)}); 
+			.then(this._checkResponse)
 	}
 	
 	getUserInfo() {
@@ -24,11 +20,7 @@ export default class Api {
 				authorization: this._authorization,
   		}
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`)
-			})
-			.catch((err)=>console.log(err))
+			.then(this._checkResponse)
 	}
 
 	updateUserInfo(data) {
@@ -40,11 +32,7 @@ export default class Api {
 			},
 			body: JSON.stringify(data)
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`);
-			})
-			.catch(err => console.log(err)) 
+			.then(this._checkResponse)
 	}
 
 	postNewCard(data) {
@@ -56,11 +44,7 @@ export default class Api {
 			},
 			body: JSON.stringify(data)
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`);
-			})
-			.catch(err => console.log(err));
+			.then(this._checkResponse)
 	}
 
 	deleteCard(cardId) {
@@ -71,11 +55,7 @@ export default class Api {
 				'Content-Type': this._contentType
 			},
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`);
-			})
-			.catch(err => console.log(err));
+			.then(this._checkResponse)
 	}
 
 	putLike(cardId) {
@@ -86,11 +66,7 @@ export default class Api {
 				'Content-Type': this._contentType
 			},
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`);
-			})
-			.catch(err => console.log(err));
+			.then(this._checkResponse)
 	}
 
 	deleteLike(cardId) {
@@ -101,11 +77,7 @@ export default class Api {
 				'Content-Type': this._contentType
 			},
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`);
-			})
-			.catch(err => console.log(err));
+			.then(this._checkResponse)
 	}
 
 	updateUserAvatar(data) {
@@ -117,10 +89,13 @@ export default class Api {
 			},
 			body: JSON.stringify(data)
 		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				else return Promise.reject(`Ошибка: ${res.status}`);
-			})
-			.catch(err => console.log(err)) 
+			.then(this._checkResponse)
+	}
+
+	_checkResponse(res) {
+		if (res.ok) {
+				return res.json();
+		}
+		return Promise.reject(`Ошибка ${res.status}`);
 	}
 }
